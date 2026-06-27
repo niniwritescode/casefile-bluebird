@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victim</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="casefile-container">
+        <h1>VICTIM</h1>
+        <div class="victim-card" onclick="openVictimModal('Victim 1')">
+            <div class="victim-name">ROBERT KLEIN</div>
+            <div class="victim-occupation">CEO, KLEIN LOGISTICS</div>
+        </div>
+
+        <div class="victim-card" onclick="openVictimModal('Victim 2')">
+            <div class="victim-name">VICTOR LANG</div>
+            <div class="victim-occupation">REAL ESTATE INVESTOR</div>
+        </div>
+
+        <div class="victim-card" onclick="openVictimModal('Victim 3')">
+            <div class="victim-name">SIMON REEVES</div>
+            <div class="victim-occupation">BANK DIRECTOR</div>
+        </div>
+
+        <div class="victim-card" onclick="openVictimModal('Victim 4')">
+            <div class="victim-name">ALAN BROOKS</div>
+            <div class="victim-occupation">TECH FOUNDER</div>
+        </div>
+
+        <div class="victim-card" onclick="openVictimModal('Victim 5')">
+            <div class="victim-name">DANIEL CARTER</div>
+            <div class="victim-occupation">INVESTMENT BROKER</div>
+        </div>
+        <a href="/casefile">Back to Case File</a>
+    </div>
+
+    <!-- MODAL -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; justify-content:center; align-items:center;">
+    <div style="border:1px solid #8b0000; background:#0a0a0a; max-width:600px; width:90%; padding:40px; position:relative;">
+        <img id="modal-img" src="" style="
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #8b0000;
+    margin-bottom: 20px;
+    filter: grayscale(30%);
+">
+        <div id="modal-name" style="font-family:'Special Elite',cursive; font-size:24px; color:#c9b99a; letter-spacing:3px; margin-bottom:20px;"></div>
+        <div id="modal-content" style="font-size:13px; line-height:2; color:#888;"></div>
+        <button onclick="closeVictimModal()" style="margin-top:30px; background:transparent; border:1px solid #555; color:#c9b99a; padding:10px 25px; cursor:pointer; font-family:'Share Tech Mono',monospace; letter-spacing:2px;">CLOSE FILE</button>
+    </div>
+</div>
+
+<script>
+    const victim = {
+        "Victim 1": {
+name: "Robert Klein",
+info: `AGE: 52
+OCCUPATION:
+CEO of Klein Logistics
+
+DATE OF DEATH:
+March 3, 2025
+
+LOCATION:
+Private office
+
+WEATHER:
+Heavy rain
+
+BACKGROUND:
+Robert Klein built one of the city's largest shipping companies.
+Known for aggressive business tactics and multiple corruption allegations,
+though no charges were ever proven.
+
+INVESTIGATOR NOTES:
+First known Bluebird murder.
+Bluebird note and rope knot were first discovered at this scene.`
+},
+
+"Victim 2": {
+name: "Victor Lang",
+info: `AGE: 48
+OCCUPATION:
+Real estate investor
+
+DATE OF DEATH:
+July 14, 2025
+
+LOCATION:
+Penthouse apartment
+
+WEATHER:
+Thunderstorm
+
+BACKGROUND:
+Victor specialized in luxury property investments and redevelopment.
+He had several legal disputes involving forced evictions and fraud claims.
+
+INVESTIGATOR NOTES:
+Second victim confirmed a pattern.
+No signs of forced entry were found.`
+},
+
+"Victim 3": {
+name: "Simon Reeves",
+info: `AGE: 61
+OCCUPATION:
+Bank Director
+
+DATE OF DEATH:
+October 28, 2025
+
+LOCATION:
+Hotel suite
+
+WEATHER:
+Heavy rain
+
+BACKGROUND:
+Simon served as director of Metropolitan Trust Bank.
+He handled large corporate accounts and was rumored to have helped
+powerful clients hide illegal transactions.
+
+INVESTIGATOR NOTES:
+Security footage mysteriously went missing during the time of murder.`
+},
+
+"Victim 4": {
+name: "Alan Brooks",
+info: `AGE: 55
+OCCUPATION:
+Tech founder
+
+DATE OF DEATH:
+February 11, 2026
+
+LOCATION:
+Mansion
+
+WEATHER:
+Heavy rain
+
+BACKGROUND:
+Alan founded Brooks Systems, a successful cybersecurity company.
+Publicly respected, but former employees accused him of exploitation
+and financial manipulation.
+
+INVESTIGATOR NOTES:
+Star-marked footprints were clearly visible at this crime scene.
+Evidence strengthened serial killer theory.`
+},
+
+"Victim 5": {
+name: "Daniel Carter",
+info: `AGE: 43
+OCCUPATION:
+Investment broker
+
+DATE OF DEATH:
+June 20, 2026
+
+LOCATION:
+Riverside Apartment 403
+
+WEATHER:
+Storm
+
+BACKGROUND:
+Daniel managed high-value investment portfolios for elite clients.
+Financial records suggest recent contact with all previous victims.
+
+INVESTIGATOR NOTES:
+Victim showed defensive wounds.
+Blue industrial paint and partial DNA were recovered from the scene.`
+}
+ };
+
+ function openVictimModal(key) {
+    const victim_item = victim[key];
+    
+    const images = {
+        "Victim 1": "/static/robert.png",
+        "Victim 2": "/static/victor.png",
+        "Victim 3": "/static/simon.png",
+        "Victim 4": "/static/alan.png",
+        "Victim 5": "/static/daniel.png"
+    }
+
+    if (victim_item) {
+        document.getElementById('modal-img').src = images[key];
+        document.getElementById('modal-name').innerText = victim[key].name;
+        document.getElementById('modal-content').innerHTML =
+            victim[key].info.replace(/\n/g, '<br>');
+        document.getElementById('modal').style.display = 'flex';
+    }
+}
+
+function closeVictimModal() {
+document.getElementById('modal').style.display = 'none';
+}
+
+</script>
+</body>
+</html>

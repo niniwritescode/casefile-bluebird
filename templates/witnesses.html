@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witnesses</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="casefile-container">
+    <h1>WITNESSES</h1>
+    <div class="witness-card" onclick="openModal('sarah')">
+        <div class="witness-name">SARAH JOHNSON</div>
+        <div class="witness-role">Neighbour of Victim</div>
+    </div>
+    <div class="witness-card" onclick="openModal('michael')">
+        <div class="witness-name">MICHAEL BROWN</div>
+        <div class="witness-role">Security Guard</div>
+    </div>
+    <div class="witness-card" onclick="openModal('emily')">
+        <div class="witness-name">EMILY DAVIS</div>
+        <div class="witness-role">Coworker</div>
+    </div>
+    <div class="witness-card" onclick="openModal('david')">
+        <div class="witness-name">DAVID WILSON</div>
+        <div class="witness-role">Street Vendor</div>
+    </div>
+        <a href="/casefile">← Back to Case File</a>
+    </div>
+
+    <!-- MODAL -->
+     <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; justify-content:center; align-items:center;">
+        <div style="border:1px solid #8b0000; background:#0a0a0a; max-width:600px; width:90%; padding:40px; position:relative;">
+            <img id="modal-img" src="" style="
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #8b0000;
+    margin-bottom: 20px;
+    filter: grayscale(30%);
+">
+            <div id="modal-name" style="font-family:'Special Elite',cursive; font-size:24px; color:#c9b99a; letter-spacing:3px; margin-bottom:20px;"></div>
+            <div id="modal-content" style="font-size:13px; line-height:2; color:#888;"></div>
+            <button onclick="closeModal()" style="margin-top:30px; background:transparent; border:1px solid #555; color:#c9b99a; padding:10px 25px; cursor:pointer; font-family:'Share Tech Mono',monospace; letter-spacing:2px;">CLOSE FILE</button>
+        </div>
+    </div>
+    <script>
+        const witnesses = {
+            "sarah": {
+                name: "SARAH JOHNSON",
+                info: `AGE: 34
+        ROLE: Neighbour of Victim 1
+        BACKGROUND:
+        Sarah is a divorced school teacher who has lived in Riverside Apartments for six years. 
+        She is observant, nosy, and known for paying close attention to everyone on her floor. 
+        She often complains about noise and suspicious visitors.
+        STATEMENT:
+        “At around 8:45 PM, I heard loud arguing from Daniel’s apartment. 
+        I’m certain there were two voices — Daniel and another man. 
+        The other voice sounded calm… almost emotionless. 
+        Then everything suddenly went quiet.”
+        CREDIBILTY:
+        Sarah has a reputation for exaggerating events. However, her detailed account of the argument and the timing aligns with other witness statements.`
+            },
+            "michael": {
+                name: "MICHAEL BROWN",
+                info: `AGE: 56
+        ROLE: Security Guard 
+        BACKGROUND:
+        Michael is a retired army veteran working night shifts as building security. 
+        Strict with rules and proud of his attention to detail. 
+        He keeps manual visitor logs and rarely misses movement near the entrance.
+        STATEMENT:
+        “No visitor entered the building after 8 PM. I checked every entry myself.
+         Either the killer entered earlier… or never used the main entrance.”
+        CREDIBILTY:
+        Michael is a reliable witness with a strong record of attention to detail. His statement is consistent with the timeline and physical evidence.`
+            },
+            "emily": {
+                name: "EMILY DAVIS",
+                info: `AGE: 29
+        ROLE: Coworker of Victim 3
+        BACKGROUND:
+        Emily works in finance with Daniel and handles internal reports.
+         She was one of the last people to see him at work.
+         Intelligent and composed, but visibly nervous during questioning.
+        STATEMENT:
+        “Daniel was still in the office around 9 PM. 
+        He seemed distracted and kept checking his phone. 
+        Before leaving, he said he had to meet someone important.”
+        CREDIBILTY:
+        Emily’s account is corroborated by office security footage and phone records.`
+            },
+            "david": {
+                name: "DAVID WILSON",
+                info: `AGE: 42
+        ROLE: Street Vendor
+        BACKGROUND:
+        David runs a small food cart near Riverside Apartments.
+         He has a keen eye for unusual activity and often notices people coming and going.
+        STATEMENT:
+        “I saw someone leaving the building around 9:20 PM wearing a dark raincoat. 
+        Couldn’t see the face because of the hood, but they walked with a slight limp.
+        What stood out was the boots — they left strange star-shaped marks in the wet pavement.”
+        CREDIBILTY:
+        High — good visual memory, though visibility was poor due to rain.
+        `}
+    
+            };
+    function openModal(key) {
+    const images = {
+        "sarah": "/static/sarah.png",
+        "michael": "/static/michael.png",
+        "emily": "/static/emily.png",
+        "david": "/static/david.png"
+    }
+
+    document.getElementById('modal-img').src = images[key];
+    document.getElementById('modal-name').innerText = witnesses[key].name;
+    document.getElementById('modal-content').innerText = witnesses[key].info;
+    document.getElementById('modal').style.display = 'flex';
+}
+    function closeModal(){
+        document.getElementById('modal').style.display = 'none';
+    }
+</script>
+</body>
+</html>

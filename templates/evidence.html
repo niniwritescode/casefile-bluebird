@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="casefile-container">
+    <h1>EVIDENCE BOARD</h1>
+    <p style="color:#555; font-size:12px; letter-spacing:2px; margin-bottom:40px;">CLICK EVIDENCE TO INSPECT</p>
+
+    <div class="evidence-board">
+
+        <div class="polaroid" onclick="openModal('a')" style="transform: rotate(-3deg)">
+            <img src="/static/ev_a.jpeg" alt="Evidence A">
+            <div class="polaroid-label">EVIDENCE A — BLUEBIRD NOTE</div>
+        </div>
+
+        <div class="polaroid" onclick="openModal('b')" style="transform: rotate(2deg)">
+            <img src="/static/ev_b.png" alt="Evidence B">
+            <div class="polaroid-label">EVIDENCE B — ROPE KNOT</div>
+        </div>
+
+        <div class="polaroid" onclick="openModal('c')" style="transform: rotate(-1deg)">
+            <img src="/static/ev_c.png" alt="Evidence C">
+            <div class="polaroid-label">EVIDENCE C — FOOTPRINT</div>
+        </div>
+
+        <div class="polaroid" onclick="openModal('d')" style="transform: rotate(3deg)">
+            <img src="/static/ev_d.png" alt="Evidence D">
+            <div class="polaroid-label">EVIDENCE D — BLUE PAINT</div>
+        </div>
+
+        <div class="polaroid" onclick="openModal('e')" style="transform: rotate(-2deg)">
+            <img src="/static/ev_e.png" alt="Evidence E">
+            <div class="polaroid-label">EVIDENCE E — DNA / WOUNDS</div>
+        </div>
+
+    </div>
+
+    <a href="/casefile" style="display:block; margin-top:50px;">← Back to Case File</a>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-box">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modal-name" style="font-family:'Special Elite',cursive; font-size:24px; color:#c9b99a; letter-spacing:3px; margin-bottom:20px;"></div>
+        <div id="modal-content" style="font-size:13px; line-height:2; color:#888;"></div>
+    </div>
+</div>
+
+<script>
+const evidence = {
+    "a": {
+        name: "EVIDENCE A — BLUEBIRD NOTE",
+        info: `A small folded note recovered beside the victim's body.\nThe word "BLUEBIRD" was written in dark blue ink using block capitals.\n\nFORENSIC ANALYSIS:\nHandwriting experts found inconsistent pressure and stroke direction.\nThe writer intentionally altered their natural handwriting.\n\nINVESTIGATOR NOTES:\nThe note appears to be a signature. Blue ink may hold symbolic significance.`
+    },
+    "b": {
+        name: "EVIDENCE B — MARITIME CONSTRICTOR KNOT",
+        info: `A nylon rope fragment recovered from the victim's neck.\n\nFORENSIC ANALYSIS:\nIdentified as a Maritime Constrictor Knot — rare, tightens under pressure.\nKnown by sailors, dock workers, climbers, rescue professionals.\n\nINVESTIGATOR NOTES:\nTied with exceptional precision. Killer has professional rope experience.`
+    },
+    "c": {
+        name: "EVIDENCE C — STAR FOOTPRINT",
+        info: `Wet footprints found near entrance and around victim's body.\n\nFORENSIC ANALYSIS:\nShoe size: US 10.\nSole contains an unusual five-point star engraving near the heel.\n\nINVESTIGATOR NOTES:\nSame star-marked footprint at all Bluebird scenes.\nMay be deliberate signature — or deliberate misdirection.`
+    },
+    "d": {
+        name: "EVIDENCE D — BLUE INDUSTRIAL PAINT",
+        info: `Microscopic traces of blue paint found on victim's collar and sleeve.\n\nFORENSIC ANALYSIS:\nIdentified as industrial-grade anti-rust paint.\nCommonly used in dockyards, shipping containers, warehouses.\n\nINVESTIGATOR NOTES:\nTransfer pattern suggests direct physical contact before death.\nMay connect suspect to an industrial work environment.`
+    },
+    "e": {
+        name: "EVIDENCE E — DEFENSIVE WOUNDS & DNA",
+        info: `Bruising on both forearms, scratch marks, broken fingernails.\n\nFORENSIC ANALYSIS:\nPartial DNA recovered from beneath victim's fingernails.\nSample incomplete due to water contamination.\n\nLAB STATUS:\nDNA profile incomplete. Full identification not possible.\n\nINVESTIGATOR NOTES:\nVictim fought back. Physical contact occurred. Additional samples needed.`
+    }
+};
+
+function openModal(key) {
+    document.getElementById('modal-name').innerText = evidence[key].name;
+    document.getElementById('modal-content').innerHTML = evidence[key].info.replace(/\n/g, '<br>');
+    document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+</script>
+</body>
+</html>

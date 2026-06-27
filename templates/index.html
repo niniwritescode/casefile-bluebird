@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Case File: The Bluebird Killer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <audio id="rain-sound" loop>
+    <source src="/static/rain.mp3" type="audio/mpeg">
+</audio>
+
+<button id="sound-btn" onclick="toggleSound()" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid #444;
+    color: #666;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    cursor: pointer;
+    z-index: 9999;
+">🔇 SOUND OFF</button>
+
+<script>
+let soundOn = false;
+const audio = document.getElementById('rain-sound');
+
+function toggleSound() {
+    if (soundOn) {
+        audio.pause();
+        document.getElementById('sound-btn').innerText = '🔇 SOUND OFF';
+        soundOn = false;
+    } else {
+        audio.volume = 0.2;
+        audio.play();
+        document.getElementById('sound-btn').innerText = '🔊 SOUND ON';
+        soundOn = true;
+    }
+}
+</script>
+    <div class="rain" id="rain"></div>
+    <div class="welcome-screen">
+        <div class="case-stamp">BLUEBIRD</div>
+        <div class="subtitle">CLASSIFIED HOMICIDE INVESTIGATION</div>
+        
+        <div class="classified">
+            <h2>CASE FILE #2025-BK</h2>
+            <p>LEAD DETECTIVE: Inspector Marcus Hale</p>
+            <p>STATUS: ACTIVE — 5 VICTIMS</p>
+            <p>CLEARANCE REQUIRED: LEVEL 4</p>
+        </div>
+
+       <div id="clearance-box">
+    <input id="clearance-input" type="password" placeholder="ENTER CLEARANCE CODE" style="
+        background: transparent;
+        border: 1px solid #444;
+        color: #c9b99a;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 13px;
+        letter-spacing: 4px;
+        padding: 15px 20px;
+        outline: none;
+        width: 280px;
+        text-align: center;
+    ">
+    <br><br>
+    <button class="enter-btn" onclick="checkCode()">ACCESS CASE FILE</button>
+    <div id="denied-msg" style="color:#8b0000; font-size:11px; letter-spacing:3px; margin-top:15px; display:none;">
+        ✗ ACCESS DENIED — INVALID CLEARANCE CODE
+    </div>
+</div>
+
+<script>
+function checkCode() {
+    const code = document.getElementById('clearance-input').value.trim().toUpperCase();
+    if (code === "BLUEBIRD") {
+        window.location.href = "/casefile";
+    } else {
+        const msg = document.getElementById('denied-msg');
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 2000);
+    }
+}
+</script>
+        <div class="rain-text">// accessed during active rainfall — proceed with caution //</div>
+    </div>
+
+   <script>
+const rain = document.getElementById('rain');
+for (let i = 0; i < 80; i++) {
+    const drop = document.createElement('div');
+    drop.classList.add('drop');
+    drop.style.left = Math.random() * 100 + 'vw';
+    drop.style.height = Math.random() * 60 + 40 + 'px';
+    drop.style.animationDuration = Math.random() * 1 + 0.5 + 's';
+    drop.style.animationDelay = Math.random() * 3 + 's';
+    drop.style.opacity = Math.random() * 0.4 + 0.1;
+    rain.appendChild(drop);
+}
+
+// Lightning
+const lightning = document.createElement('div');
+lightning.classList.add('lightning');
+document.body.appendChild(lightning);
+
+function triggerLightning() {
+    lightning.style.animation = 'none';
+    lightning.offsetHeight;
+    lightning.style.animation = 'strike 0.5s ease-out';
+    const next = Math.random() * 8000 + 3000;
+    setTimeout(triggerLightning, next);
+}
+triggerLightning();
+</script>
+</body>
+</html>

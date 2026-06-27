@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Summary</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="summary-card" onclick="openSummary()">
+    <div class="summary-title">CASE SUMMARY</div>
+    <div class="summary-desc">
+        Five businessmen murdered over 18 months with identical patterns.
+    </div>
+</div>
+
+<a href="/casefile">Back to Case File</a>
+
+<div id="summary-modal" class="modal">
+    <div class="modal-box">
+        <span class="close-btn" onclick="closeSummary()">&times;</span>
+        <h2 id="summary-modal-title">CASE SUMMARY</h2>
+        <div id="summary-modal-content"></div>
+    </div>
+</div>
+
+<script>
+const caseSummary = {
+    title: "CASE SUMMARY",
+    info: `Over the last 18 months, five wealthy businessmen have been found murdered across the city.
+
+Common patterns observed in all murders:
+
+1. Murder happens ONLY during heavy rainfall.
+2. Victims are always influential businessmen.
+3. Cause of death: strangulation.
+4. Rope used in every murder has the exact same rare knot style.
+5. A handwritten note saying "BLUEBIRD" is left near every body.
+6. Wet footprints are found at every crime scene.
+7. Each footprint contains a star-shaped mark in the center of the sole.
+
+Police believe the same killer is responsible.`
+};
+
+function typeWriter(text, element, speed = 18) {
+    element.innerHTML = '';
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            if (text.slice(i, i + 4) === '<br>') {
+                element.innerHTML += '<br>';
+                i += 4;
+            } else {
+                element.innerHTML += text[i];
+                i++;
+            }
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+function openSummary() {
+    const formatted = caseSummary.info.replace(/\n/g, '<br>');
+    document.getElementById('summary-modal-title').innerText = caseSummary.title;
+    document.getElementById('summary-modal').style.display = 'flex';
+    const content = document.getElementById('summary-modal-content');
+    typeWriter(formatted, content);
+}
+function closeSummary() {
+    document.getElementById('summary-modal').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

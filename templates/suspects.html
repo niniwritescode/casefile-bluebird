@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspects</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="casefile-container">
+    <h1>SUSPECTS</h1>
+    <div class="suspect-card" onclick="openModal('ethan')">
+    <div class="suspect-name">ETHAN COLE</div>
+    <div class="suspect-role">Former Dock Worker</div>
+</div>
+
+<div class="suspect-card" onclick="openModal('olivia')">
+    <div class="suspect-name">OLIVIA CARTER</div>
+    <div class="suspect-role">Wife of Victim 5</div>
+</div>
+
+<div class="suspect-card" onclick="openModal('nathan')">
+    <div class="suspect-name">NATHAN REEVES</div>
+    <div class="suspect-role">Journalist</div>
+</div>
+
+<div class="suspect-card" onclick="openModal('unknown')">
+    <div class="suspect-name">UNKNOWN FEMALE</div>
+    <div class="suspect-role">Primary Lead — Identity Unknown</div>
+</div>
+    <a href="/casefile">← Back to Case File</a>
+    </div>
+
+<!-- MODAL -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; justify-content:center; align-items:center;">
+    <div style="border:1px solid #8b0000; background:#0a0a0a; max-width:600px; width:90%; padding:40px; position:relative;">
+        <img id="modal-img" src="" style="
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #8b0000;
+    margin-bottom: 20px;
+    filter: grayscale(30%);
+">
+        <div id="modal-name" style="font-family:'Special Elite',cursive; font-size:24px; color:#c9b99a; letter-spacing:3px; margin-bottom:20px;"></div>
+        <div id="modal-content" style="font-size:13px; line-height:2; color:#888;"></div>
+        <button onclick="closeModal()" style="margin-top:30px; background:transparent; border:1px solid #555; color:#c9b99a; padding:10px 25px; cursor:pointer; font-family:'Share Tech Mono',monospace; letter-spacing:2px;">CLOSE FILE</button>
+    </div>
+</div>
+
+<script>
+const suspects = {
+    "ethan": {
+        name: "ETHAN COLE",
+        info: `AGE: 54
+OCCUPATION: Former dock worker. Currently unemployed.
+
+BACKGROUND:
+Worked with ropes daily for 20 years. Knows Maritime knots intimately.
+Was a whistleblower against Starbird Holdings 12 years ago.
+Was framed for embezzlement instead. Lost everything.
+Wife died two years after the scandal. Cause: illness worsened by stress.
+Has a limp in his left leg — injury from dock work.
+
+CURRENT STATUS:
+Cooperative with police. Denies involvement.
+Alibi for two murder nights: unverified.`
+    },
+    "olivia": {
+        name: "OLIVIA CARTER",
+        info: `AGE: 39
+OCCUPATION: Interior Designer.
+
+BACKGROUND:
+Wife of Victim 5, Daniel Carter.
+Marriage had documented problems — neighbours reported arguments.
+Stands to receive large life insurance payout following Daniel's death.
+
+CURRENT STATUS:
+Alibi night of murder: claims she was at a friend's house.
+Friend confirms. Police considering independent verification.`
+    },
+    "nathan": {
+        name: "NATHAN REEVES",
+        info: `AGE: 36
+OCCUPATION: Investigative Journalist.
+
+BACKGROUND:
+Had been investigating all five victims for corruption.
+Specifically: their shared involvement in Starbird Holdings fraud 12 years ago.
+Had access to their schedules and private information.
+No criminal record.
+
+CURRENT STATUS:
+Claims his investigation was about exposing them, not killing them.
+Voluntarily shared his research files with police.`
+    },
+    "unknown": {
+        name: "UNKNOWN FEMALE",
+        info: `AGE: Approximately 24-28.
+OCCUPATION: Unknown.
+
+DESCRIPTION:
+Multiple witnesses report a young woman seen near two separate crime scenes.
+Always during heavy rainfall. Always wearing a dark hooded coat.
+Walked with confidence. Did not appear panicked.
+
+LATEST SIGHTING:
+Skyline Grand Hotel. Room 708. 11:47 PM.
+Found standing over unconscious victim Leonard Hayes.
+Holding rope. Holding a note marked BLUEBIRD.
+Fled before backup arrived. Face seen by Detective Marcus Hale.
+
+STATUS: PRIMARY SUSPECT. Identity unknown. Actively being traced.`
+    }
+}
+
+function openModal(key) {
+    const images = {
+        "ethan": "/static/ethan.png",
+        "olivia": "/static/olivia.png",
+        "nathan": "/static/nathan.png",
+        "unknown": "/static/stephanie.png"
+    }
+    
+    document.getElementById("modal-name").innerText = suspects[key].name
+    document.getElementById("modal-content").innerText = suspects[key].info
+    document.getElementById("modal-img").src = images[key]
+    document.getElementById("modal").style.display = "flex"
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none"
+}
+</script>
+</body>
+</html>

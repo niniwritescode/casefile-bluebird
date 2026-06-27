@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Accusation</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="casefile-container">
+<h1>FINAL ACCUSATION</h1>
+<p>You have reviewed the evidence.<br>
+You have interrogated the suspects.<br>
+Now name the killer.</p>
+
+<div class="suspect-list">
+    <label><input type="radio" name="suspect" value="1"> Ethan Cole — Former dock worker</label><br><br>
+    <label><input type="radio" name="suspect" value="2"> Olivia Carter — Wife of Victim 5</label><br><br>
+    <label><input type="radio" name="suspect" value="3"> Nathan Reeves — Journalist</label><br><br>
+    <label><input type="radio" name="suspect" value="4"> Stephanie Cole — Financial Analyst</label>
+</div>
+
+<br>
+<button class="accuse-btn" onclick="makeAccusation()">SUBMIT ACCUSATION</button>
+</div>
+<div id="result-box" class="modal" style="display:none;">
+    <div class="modal-box">
+        <span class="close-btn" onclick="closeResult()">&times;</span>
+        <h2 id="result-title"></h2>
+        <div id="result-content"></div>
+    </div>
+</div>
+
+<script>
+function makeAccusation() {
+    const selected = document.querySelector('input[name="suspect"]:checked');
+
+    if (!selected) {
+        alert("Select a suspect first.");
+        return;
+    }
+
+    const answer = selected.value;
+    let title = "";
+    let content = "";
+
+    if (answer === "4") {
+        title = "CORRECT. CASE CLOSED.";
+        content = `STEPHANIE COLE. Age 29. Financial Analyst.
+
+Twelve years ago, Starbird Holdings destroyed her family.
+Her father Ethan tried to expose the fraud.
+They framed him instead. He lost everything.
+
+Her mother never recovered.
+She died two years later.
+
+Stephanie spent a decade getting close to each victim.
+Working inside their companies.
+Learning their routines.
+Waiting.
+
+She drugged their coffee first.
+
+"Men like them don't fear prison. They fear helplessness."
+
+Then she strangled them.
+Controlled. Deliberate.
+
+The Maritime knot — her father taught her as a child.
+
+BLUEBIRD was the internal codename of the fraud.
+She signed every murder with it.
+Not as a threat. As a receipt.
+
+The limp, the boots, the planted footprint —
+all misdirection.
+
+She made you look at her father.
+
+When Ethan was questioned, he stayed silent for two hours.
+
+Detective: "Who tied the knots?"
+Ethan: "...I did."
+
+He found out after the third murder.
+He didn't stop her.
+He helped cover it.
+
+STEPHANIE COLE — arrested. Murder x5.
+ETHAN COLE — arrested. Accessory x3.
+
+Justice? You decide.`;
+    } else {
+        const names = {
+            "1": "Ethan Cole",
+            "2": "Olivia Carter",
+            "3": "Nathan Reeves"
+        };
+
+        title = "WRONG ACCUSATION";
+        content = `You accused ${names[answer]}.
+
+Stephanie Cole disappears into the city.
+
+The Bluebird killings stop.
+No one knows why.
+
+Case goes cold.`;
+    }
+
+    document.getElementById("result-title").innerText = title;
+    document.getElementById("result-content").innerHTML =
+        content.replace(/\n/g, "<br>");
+    document.getElementById("result-box").style.display = "flex";
+}
+
+function closeResult() {
+    document.getElementById("result-box").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detective Journal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="casefile-container">
+    <h1>DETECTIVE'S JOURNAL</h1>
+    <p style="color:#555; font-size:12px; letter-spacing:2px; margin-bottom:30px;">YOUR NOTES — VISIBLE ONLY TO YOU</p>
+
+    <textarea id="journal-text" placeholder="Write your theories here..." style="
+        width: 100%;
+        height: 400px;
+        background: rgba(0,0,0,0.7);
+        border: 1px solid #333;
+        color: #c9b99a;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 13px;
+        padding: 20px;
+        letter-spacing: 1px;
+        line-height: 2;
+        resize: none;
+        outline: none;
+    "></textarea>
+
+    <div style="margin-top:20px; display:flex; gap:15px;">
+        <button class="accuse-btn" onclick="saveNote()">SAVE NOTE</button>
+        <button class="accuse-btn" onclick="clearNote()">CLEAR</button>
+    </div>
+
+    <div id="save-msg" style="color:#8b0000; font-size:12px; letter-spacing:2px; margin-top:15px; display:none;">
+        NOTE SAVED.
+    </div>
+
+    <a href="/casefile" style="display:block; margin-top:30px;">← Back to Case File</a>
+</div>
+
+<script>
+window.onload = function() {
+    const saved = localStorage.getItem('detective-journal');
+    if (saved) document.getElementById('journal-text').value = saved;
+}
+
+function saveNote() {
+    const text = document.getElementById('journal-text').value;
+    localStorage.setItem('detective-journal', text);
+    const msg = document.getElementById('save-msg');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 2000);
+}
+
+function clearNote() {
+    document.getElementById('journal-text').value = '';
+    localStorage.removeItem('detective-journal');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking news</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="breaking-card" onclick="openBreakingNews()">
+    <div class="breaking-title">BREAKING NEWS</div>
+    <div class="breaking-desc">
+        Attempted Sixth Murder at Skyline Grand Hotel
+    </div>
+    </div>
+    <a href="/casefile">Back to Case File</a>
+
+
+<div id="breaking-modal" class="modal">
+    <div class="modal-box">
+        <span class="close-btn" onclick="closeBreakingNews()">&times;</span>
+        <h2 id="breaking-modal-title">BREAKING: ATTEMPTED SIXTH MURDER</h2>
+        <div id="breaking-modal-content"></div>
+    </div>
+</div>
+
+<script>
+const breakingNews = {
+    title: "BREAKING: ATTEMPTED SIXTH MURDER",
+    info: `Another stormy night.
+
+At 11:47 PM, Detective Marcus received an anonymous tip —
+the Bluebird Killer would strike again at Skyline Grand Hotel.
+Businessman Leonard Hayes. Room 708.
+
+Marcus noticed the rainfall. The pattern.
+He didn't wait for backup.
+
+Inside room 708 — Hayes unconscious on the floor.
+Spilled coffee beside him.
+
+Standing at the window:
+A young woman. Rain-soaked black coat.
+Rope in one hand.
+A note marked BLUEBIRD in the other.
+
+Lightning filled the room.
+
+Marcus saw the star-marked boots.
+He saw her face.
+Cold. Unsurprised. Like she'd been expecting him.
+
+For the first time, the Bluebird Killer had a face.
+
+She dropped the rope and ran before backup arrived.
+Hayes survived.
+
+The unknown female suspect is now the primary lead.`
+};
+
+function openBreakingNews() {
+    document.getElementById('breaking-modal-title').innerText =
+        breakingNews.title;
+
+    document.getElementById('breaking-modal-content').innerHTML =
+        breakingNews.info.replace(/\n/g, '<br>');
+
+    document.getElementById('breaking-modal').style.display = 'flex';
+}
+
+function closeBreakingNews() {
+    document.getElementById('breaking-modal').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
